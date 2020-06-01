@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Free Internet</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Login ke Hotspot Mikrotik." />
+	<meta http-equiv="expires" content="-1" />
+
+	<meta name="author" content="kurei" />
+
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+
+	<script type="text/javascript" src="js/mootools.js"></script>
+
+	<script type="text/javascript" src="js/formcheck.js"></script>
+	<script type="text/javascript">
+		window.addEvent('domready', function(){check = new FormCheck('third', {
+			display : {
+				fadeDuration : 500,
+				errorsLocation : 1,
+				indicateErrors : 1,
+				showErrors : 1
+			}
+		})});
+	</script>
+	<style type="text/css">
+	body, html 
+	{
+		color: #fff; 
+		font-size: 10px; 
+		font-family: verdana;
+		height: 100%; 
+	}
+
+	.hero
+	{
+		height: 100%;
+		background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.bg-image
+	{
+		filter: blur(8px);
+		-webkit-filter: blur(8px);
+	}
+
+	textarea,input,select {
+		background-color: #FDFBFB;
+		border: 1px solid #BBBBBB;
+		padding: 2px;
+		margin: 1px;
+		font-size: 14px;
+		color: #808080;
+	}
+
+	a, a:link, a:visited, a:active { color: #AAAAAA; text-decoration: none; font-size: 10px; }
+	a:hover { border-bottom: 1px dotted #c1c1c1; color: #AAAAAA; }
+	img {border: none;}
+	td { font-size: 14px; color: #7A7A7A; }
+
+	.login
+	{
+		padding-top: 10px; 
+	}
+	.text-center
+	{
+		text-align: center;
+	}
+	.button 
+	{
+		background-color: #213691; /* Biru */
+		border: none;
+		color: white;
+		padding: 10px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		font-weight: 700;
+		border-radius: 10px;
+		 -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+	}
+
+	.button:hover
+	{
+		background-color: white;
+		color: #213691;
+	}
+
+	.background-blur
+	{
+		background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  /*border: 3px solid #f1f1f1;*/
+  position: relative;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 60%;
+  padding: 10px;
+  text-align: center;
+  	} 
+</style>
+
+
+
+<script type="text/javascript" src="js/niceforms.js"></script>
+
+
+</head>
+<body>
+	<section class="hero">
+	<div class="login text-center">
+				
+		<form name="login" class="niceform" id="third" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)  >
+			<!-- <center> -->
+
+				<input type="hidden" name="dst" value="$(link-orig)" />
+				<input type="hidden" name="popup" value="true" />
+				<input type="hidden" name="username" value="free">
+				<input type="hidden" name="password" value="free">
+				
+				<button name="submit"class="button btn-warning">Login</button>
+
+				
+				<!-- </center> -->
+			</form>
+
+			
+
+
+			$(if chap-id)
+			<form name="sendin" action="$(link-login-only)" method="post" id="third" style="display:none">
+				<input type="hidden" name="username" />
+				<input type="hidden" name="password" />
+				<input type="hidden" name="dst" value="$(link-orig)" />
+				<input type="hidden" name="popup" value="true" />
+			</form>
+		</div>	
+	</section>
+	
+
+		<script type="text/javascript" src="/md5.js"></script>
+		<script type="text/javascript">
+			<!--
+				function doLogin() {
+					document.sendin.username.value = document.login.username.value;
+					document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+					document.sendin.submit();
+					return false;
+				}
+	//-->
+</script>
+$(endif)
+
+$(if error)<br /><div style="color: #FF8080; font-size: 9px">$(error)</div>$(endif)
+<script type="text/javascript">
+	<!--
+		document.login.username.focus();
+//-->
+</script>
+</body>
+</html>
+
+
+
